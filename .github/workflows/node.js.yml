@@ -20,7 +20,15 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
+    - name: actions/checkout
+      uses: actions/checkout@v3
+    - name: Install an build
+      run: npm install && npm run build
+    - name: Deploy
+      uses: anushavirri-r/github-pages-deploy-action@4.1.1
+      with:
+        branch: gh-pages
+        folder: build
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
